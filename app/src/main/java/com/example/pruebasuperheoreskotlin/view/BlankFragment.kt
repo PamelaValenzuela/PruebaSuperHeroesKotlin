@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pruebasuperheoreskotlin.R
 import com.example.pruebasuperheoreskotlin.model.dataClass.DataModelHeroes
@@ -61,7 +62,7 @@ class BlankFragment : Fragment() {
         mLVDataHeroes= ViewModelProvider(this).get(ViewModelHeroes::class.java)
         mLVDataHeroes.puenteentreViewModelYRepo()
         //LiveData agregamos el observer para poder setear la lista en el adpter
-        mLVDataHeroes.obtenerListaDesdeRepo().observe(this,{
+        mLVDataHeroes.obtenerListaDesdeRepo().observe(viewLifecycleOwner,{
            heroesAdapter.refreshData(it)
         })
 
